@@ -13,7 +13,7 @@ import torchvision
 from networks.resnet import *
 import pdb
 
-dimdict={'efficientnet-b0':1536 ,'efficientnet-b1':1536 ,'efficientnet-b2':1536 ,'efficientnet-b3':1536 ,'efficientnet-b4':1792,'efficientnet-b5':2048,'efficientnet-b6':2304,'efficientnet-b7':2560}
+dimdict={'efficientnet-b0':1280 ,'efficientnet-b1':1536 ,'efficientnet-b2':1536 ,'efficientnet-b3':1536 ,'efficientnet-b4':1792,'efficientnet-b5':2048,'efficientnet-b6':2304,'efficientnet-b7':2560}
 
 class ENet(nn.Module):
 
