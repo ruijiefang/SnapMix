@@ -1,0 +1,37 @@
+
+exp_name: nowarp
+dataset: cassava
+#datadir: data/cub
+#net_type: resnet_ft
+
+train_proc: comm
+test_proc: comm
+
+#batch_size: 16
+
+prams_group: ['ftlayer','freshlayer']
+lr_group: [0.001,0.01]
+#lr_group: [0.0005,0.005]
+#lr_group: [0.0002,0.002]
+#lr: 0.01
+
+#lrstep: [80,150,180]
+lrstep: [20,30]
+epochs: 40
+#lrstep: [80,160]
+lrgamma: 0.1
+
+
+criterion: CrossEntropyLoss
+reduction: none
+warp: False
+#pretrained: True
+#
+#resize: 512
+#cropsize: 448
+#resize: 256
+#cropsize: 224
+
+#mixmethod: sc_cutmix_6
+#beta: 1
+#prob: 1
