@@ -135,7 +135,7 @@ def get_cub_transform(conf=None):
     #else:
     #    tflist = [transforms.Resize(resize),transforms.RandomCrop(cropsize)]
     custom_transforms = Compose([
-        A.Resize(resize),
+        A.Resize(resize[0], resize[1]),
         A.HorizontalFlip(p=0.5),
         A.VerticalFlip(p=0.5),
         A.ShiftScaleRotate(p=0.5),
