@@ -154,7 +154,7 @@ def get_cub_transform(conf=None):
     transform_test = transforms.Compose([
                              transforms.Resize(resize),
                              #transforms.CenterCrop(cropsize),
-                             transforms.ToTensor()
+                             transforms.ToTensor(),
                              normalize
                              ])
 
