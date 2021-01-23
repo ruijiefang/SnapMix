@@ -111,29 +111,29 @@ def get_cub_transform_v1(conf=None):
     return transform_train,transform_test
 def get_cub_transform(conf=None):
 
-    resize = 256
-    cropsize = 224
+    resize = (400, 300)
+    #cropsize = 224
 
 
-    if conf and 'cropsize' in conf:
-        cropsize = conf.cropsize
-        resize = resizedict[str(cropsize)]
+    #if conf and 'cropsize' in conf:
+    #    cropsize = conf.cropsize
+    #    resize = resizedict[str(cropsize)]
 
-    if 'warp' in conf:
-
-        if conf.warp:
-            print('using warping')
-            resize = (resize,resize)
-            cropsize = (cropsize,cropsize)
+    #if 'warp' in conf:#
+#
+#        if conf.warp:
+#            print('using warping')
+#            resize = (resize,resize)
+#            cropsize = (cropsize,cropsize)
 
 
 
     normalize = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 
-    if resize == cropsize:
-        tflist = [transforms.RandomResizedCrop(cropsize)]
-    else:
-        tflist = [transforms.Resize(resize),transforms.RandomCrop(cropsize)]
+    #if resize == cropsize:
+    #    tflist = [transforms.RandomResizedCrop(cropsize)]
+    #else:
+    #    tflist = [transforms.Resize(resize),transforms.RandomCrop(cropsize)]
     custom_transforms = Compose([
         A.Resize(resize),
         A.HorizontalFlip(p=0.5),
