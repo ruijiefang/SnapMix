@@ -130,14 +130,23 @@ def get_cub_transform(conf=None):
         tflist = [transforms.RandomResizedCrop(cropsize)]
     else:
         tflist = [transforms.Resize(resize),transforms.RandomCrop(cropsize)]
-
-    transform_train = transforms.Compose(tflist + [
-                transforms.RandomRotation(15),
-                transforms.RandomCrop(cropsize),
-                transforms.RandomHorizontalFlip(),
+    custom_transforms = [
+        transforms.HorizontalFlip(p=0.5),
+        transforms.Transpose(p=0.5),
+        transforms.VerticalFlip(p=0.5),
+        transforms.RandomRotation(15),
+        transforms.ShiftScaleRotate(p=0.5),
+        #               transforms.RandomCrop(cropsize),
+        transforms.HueSaturationValue(hue_shift_limit=0.2, sat_shift_limit=0.2, val_shift_limit=0.2, p=0.5),
+        transforms.RandomBrightnessContrast(brightness_limit=(-0.1,0.1), contrast_limit=(-0.1, 0.1), p=0.5),
+        transforms.augmentations.transforms.RGBShift (r_shift_limit=20, g_shift_limit=20, b_shift_limit=20, always_apply=False, p=0.5),
+        transforms.augmentations.transforms.ChannelDropout (channel_drop_range=(1, 1), fill_value=0, always_apply=False, p=0.5),
+        transforms.augmentations.transforms.GridDistortion (num_steps=5, distort_limit=0.3, interpolation=1, border_mode=4, value=None, mask_value=None, always_apply=False, p=0.5),
+        transforms.CoarseDropout(p=0.5),
+        transforms.Cutout(p=0.5)]
+    transform_train = transforms.Compose(tflist + custom_transforms + [
                 transforms.ToTensor(),
                 normalize])
-
     transform_test = transforms.Compose([
                              transforms.Resize(resize),
                              transforms.CenterCrop(cropsize),
