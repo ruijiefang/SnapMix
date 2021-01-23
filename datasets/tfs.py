@@ -134,7 +134,6 @@ def get_cub_transform(conf=None):
         tflist = [transforms.RandomResizedCrop(cropsize)]
     else:
         tflist = [transforms.Resize(resize),transforms.RandomCrop(cropsize)]
-    abmt_transforms = 
     custom_transforms = Compose([
         A.Resize(resize),
         A.HorizontalFlip(p=0.5),
@@ -145,6 +144,7 @@ def get_cub_transform(conf=None):
         A.augmentations.transforms.RGBShift (r_shift_limit=20, g_shift_limit=20, b_shift_limit=20, always_apply=False, p=0.5),
         A.augmentations.transforms.ChannelDropout (channel_drop_range=(1, 1), fill_value=0, always_apply=False, p=0.5),
         A.augmentations.transforms.GridDistortion (num_steps=5, distort_limit=0.3, interpolation=1, border_mode=4, value=None, mask_value=None, always_apply=False, p=0.5),
+        A.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         A.CoarseDropout(p=0.5),
         A.Cutout(p=0.5), 
         ToTensorV2()])
@@ -154,11 +154,11 @@ def get_cub_transform(conf=None):
     transform_test = transforms.Compose([
                              transforms.Resize(resize),
                              #transforms.CenterCrop(cropsize),
-                             transforms.ToTensor(),
+                             transforms.ToTensor()
                              normalize
                              ])
 
-    return transform_train,transform_test
+    return custom_transforms,transform_test
 
 
 
