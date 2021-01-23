@@ -4,7 +4,7 @@ from utils import *
 
 import albumentations as A
 from albumentations import Compose
-from albumentations.pytorch import ToTensorV2
+from albumentations.pytorch import ToTensor
 
 resizedict = {'224':256,'448':512,'112':128}
 #resizedict = {'224':256,'448':550,'112':128}
@@ -147,7 +147,7 @@ def get_cub_transform(conf=None):
         A.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         A.CoarseDropout(p=0.5),
         A.Cutout(p=0.5), 
-        ToTensorV2()])
+        ToTensor()])
     #transform_train = transforms.Compose(tflist + [
     #            transforms.ToTensor(),
     #            normalize])
