@@ -145,7 +145,7 @@ def get_cub_transform(conf=None):
         #A.augmentations.transforms.ChannelDropout (channel_drop_range=(1, 1), fill_value=0, always_apply=False, p=0.5),
         A.augmentations.transforms.GridDistortion (num_steps=5, distort_limit=0.3, interpolation=1, border_mode=4, always_apply=False, p=0.5),
         A.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        A.CoarseDropout(p=0.5),
+        # A.CoarseDropout(p=0.5),
         A.Cutout(p=0.5), 
         ToTensor()])
     #transform_train = transforms.Compose(tflist + [
