@@ -61,8 +61,9 @@ def get_voc_transform(conf=None):
         transform_test = transforms.Compose([
                              transforms.Resize(resize),
                              transforms.CenterCrop(cropsize),
+                             normalize,
                              transforms.ToTensor(),
-                             normalize
+                             
                              ])
 
     return transform_train,transform_test
