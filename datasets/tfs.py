@@ -5,6 +5,7 @@ from utils import *
 import albumentations as A
 from albumentations import Compose
 from albumentations.pytorch import ToTensor
+import numpy as np 
 
 resizedict = {'224':256,'448':512,'112':128}
 #resizedict = {'224':256,'448':550,'112':128}
@@ -158,8 +159,8 @@ def get_cub_transform(conf=None):
                              transforms.ToTensor(),
                              normalize
                              ])
-
-    return custom_transforms,transform_test
+    transform_train = lambda x: custom_transforms(image=np.array(x))['image']
+    return transform_train,transform_test
 
 
 
