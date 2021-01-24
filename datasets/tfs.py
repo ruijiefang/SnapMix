@@ -159,7 +159,7 @@ def get_cub_transform(conf=None):
                              normalize
                              ])
 
-    return transform_test,transform_test
+    return custom_transforms,transform_test
 
 
 
