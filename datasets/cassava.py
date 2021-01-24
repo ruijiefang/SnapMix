@@ -99,20 +99,7 @@ def get_dataset(conf):
     if conf.tta is None or conf.tta==2:
         ds_test = ImageLoader(imgdir, train=False, transform=transform_test,pdata=valpd,tta=conf.tta)
     else:
-        ds_test = ImageLoader(imgdir, train=False, transform=Compose([
-            A.Resize(400, 300),
-            A.HorizontalFlip(p=0.5),
-            A.VerticalFlip(p=0.5),
-            A.ShiftScaleRotate(p=0.5),
-            A.HueSaturationValue(hue_shift_limit=0.2, sat_shift_limit=0.2, val_shift_limit=0.2, p=0.5),
-            A.RandomBrightnessContrast(brightness_limit=(-0.1,0.1), contrast_limit=(-0.1, 0.1), p=0.5),
-            A.augmentations.transforms.RGBShift (r_shift_limit=20, g_shift_limit=20, b_shift_limit=20, always_apply=False, p=0.5),
-            #A.augmentations.transforms.ChannelDropout (channel_drop_range=(1, 1), fill_value=0, always_apply=False, p=0.5),
-            A.augmentations.transforms.GridDistortion (num_steps=5, distort_limit=0.3, interpolation=1, border_mode=4, always_apply=False, p=0.5),
-            A.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-            # A.CoarseDropout(p=0.5),
-            A.Cutout(p=0.5), 
-            ToTensor()]),pdata=valpd,tta=conf.tta)
+        ds_test = ImageLoader(imgdir, train=False, transform=transform_test,pdata=valpd,tta=conf.tta)
 
 
     return ds_train,ds_test
